@@ -1,9 +1,7 @@
 <?php
 
-use App\Infrastructure\ServiceProvider\MigrationServiceProvider;
-use App\Infrastructure\ServiceProvider\RouterServiceProvider;
+use App\Infrastructure\ServiceProvider\ServiceProviderLoader;
 
 return [
-    RouterServiceProvider::class,
-    MigrationServiceProvider::class,
+    ServiceProviderLoader::class,
 ];
