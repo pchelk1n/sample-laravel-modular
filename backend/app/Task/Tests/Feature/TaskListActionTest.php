@@ -19,7 +19,7 @@ final class TaskListActionTest extends TestCase
 
         $response = $this->getJson('/api/tasks');
 
-        $response->assertStatus(200);
+        $response->assertOk();
 
         self::assertCount(10, $response['data']);
     }

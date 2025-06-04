@@ -10,12 +10,15 @@ build:
 up:
 	make setup-env
 	docker compose up --detach --wait --wait-timeout 60 --force-recreate --remove-orphans
-	docker compose run --rm backend php artisan migrate
+	make migrate
 	make seeds
 
 down:
 	make setup-env
 	docker compose down --remove-orphans
+
+migrate:
+	docker compose run --rm backend php artisan migrate
 
 seeds:
 	make setup-env

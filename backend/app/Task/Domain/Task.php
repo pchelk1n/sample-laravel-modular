@@ -13,12 +13,15 @@ final class Task extends Model
 
     protected $fillable = [
         'title',
+        'description',
+        'is_completed',
     ];
 
     protected function casts(): array
     {
         return [
             'completed_at' => 'immutable_datetime',
+            'is_completed' => 'bool',
         ];
     }
 }
