@@ -1,6 +1,6 @@
 <?php
 
-use App\Infrastructure\ServiceProvider\ServiceProviderLoader;
+use App\Infrastructure\ServiceProviders\ServiceProviderLoader;
 
 return [
     ServiceProviderLoader::class,

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\ServiceProvider;
+namespace App\Infrastructure\ServiceProviders;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -18,11 +18,11 @@ final class ServiceProviderLoader extends ServiceProvider
                 continue;
             }
 
-            $pathTemplate = sprintf("app/%s/ServiceProvider/*.php", $moduleDir);
+            $pathTemplate = sprintf("app/%s/ServiceProviders/*.php", $moduleDir);
 
             foreach (glob(base_path($pathTemplate)) as $providerFile) {
                 $providerFileName = pathinfo($providerFile, PATHINFO_FILENAME);
-                $classProvider = sprintf("App\\%s\\ServiceProvider\\%s", $moduleDir, $providerFileName);
+                $classProvider = sprintf("App\\%s\\ServiceProviders\\%s", $moduleDir, $providerFileName);
                 if (self::class !== $classProvider && class_exists($classProvider)) {
                     $this->app->register($classProvider);
                 }

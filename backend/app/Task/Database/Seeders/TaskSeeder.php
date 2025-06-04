@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Task\Database\Seeder;
+namespace App\Task\Database\Seeders;
 
-use App\Task\Database\Factory\TaskFactory;
+use App\Task\Database\Factories\TaskFactory;
 use Illuminate\Database\Seeder;
 
 final class TaskSeeder extends Seeder

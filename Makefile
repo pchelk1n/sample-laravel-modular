@@ -19,7 +19,7 @@ down:
 
 seeds:
 	make setup-env
-	docker compose run --rm backend php artisan db:seed --class=App\\Task\\Database\\Seeder\\TaskSeeder
+	docker compose run --rm backend php artisan db:seed --class=App\\Task\\Database\\Seeders\\TaskSeeder
 
 test:
 	make setup-env

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Task\ServiceProvider;
+namespace App\Task\ServiceProviders;
 
 use App\Task\Domain\TaskRepository;
 use Illuminate\Support\ServiceProvider;

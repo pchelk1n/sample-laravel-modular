@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\ServiceProvider;
+namespace App\Infrastructure\ServiceProviders;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -11,7 +11,7 @@ final class MigrationServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        foreach (glob(base_path('app/*/Database/Migration/*.php')) as $migrationFile) {
+        foreach (glob(base_path('app/*/Database/Migrations/*.php')) as $migrationFile) {
             $this->loadMigrationsFrom($migrationFile);
         }
     }

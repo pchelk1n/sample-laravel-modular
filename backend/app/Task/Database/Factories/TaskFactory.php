@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Task\Database\Factory;
+namespace App\Task\Database\Factories;
 
 use App\Task\Domain\Task;
 use Illuminate\Database\Eloquent\Factories\Factory;

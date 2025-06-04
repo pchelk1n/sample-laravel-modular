@@ -2,10 +2,13 @@
 
 namespace App\Task\Tests\Feature;
 
-use App\Task\Database\Factory\TaskFactory;
+use App\Task\Database\Factories\TaskFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\TestCase;
 
+/**
+ * @internal
+ */
 final class TaskListActionTest extends TestCase
 {
     use RefreshDatabase;
