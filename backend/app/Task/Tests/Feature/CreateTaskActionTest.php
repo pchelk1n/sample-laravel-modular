@@ -16,28 +16,28 @@ final class CreateTaskActionTest extends TestCase
 
     public function testSuccess(): void
     {
-        $response = $this->postJson('/api/tasks' ,[
+        $response = $this->postJson('/api/tasks', [
             'title' => $expectedTitle = 'Task 1',
             'description' => $expectedDescription = 'Task 1 description',
         ]);
 
         $response->assertCreated();
 
-        self::assertEquals($expectedTitle, $response['data']['title']);
-        self::assertEquals($expectedDescription, $response['data']['description']);
+        self::assertSame($expectedTitle, $response['data']['title']);
+        self::assertSame($expectedDescription, $response['data']['description']);
         self::assertFalse($response['data']['isCompleted']);
         self::assertNull($response['data']['completedAt']);
     }
 
     public function testSuccessWithEmptyDescription(): void
     {
-        $response = $this->postJson('/api/tasks' ,[
+        $response = $this->postJson('/api/tasks', [
             'title' => $expectedTitle = 'Task 1',
         ]);
 
         $response->assertCreated();
 
-        self::assertEquals($expectedTitle, $response['data']['title']);
+        self::assertSame($expectedTitle, $response['data']['title']);
         self::assertNull($response['data']['description']);
         self::assertFalse($response['data']['isCompleted']);
         self::assertNull($response['data']['completedAt']);

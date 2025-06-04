@@ -4,7 +4,7 @@ namespace App\Task\Http\CreateTask;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateTaskRequest extends FormRequest
+final class CreateTaskRequest extends FormRequest
 {
     public function rules(): array
     {

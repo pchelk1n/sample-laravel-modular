@@ -27,3 +27,15 @@ seeds:
 test:
 	make setup-env
 	docker compose run --rm backend php artisan test
+
+check-code:
+	make php-cs-fixer-check
+
+fix-code:
+	make php-cs-fixer-fix
+
+php-cs-fixer-check:
+	docker compose run --rm backend bash -c 'PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer --config=app-dev/php-cs-fixer-config.php fix --dry-run --diff --ansi -v'
+
+php-cs-fixer-fix:
+	docker compose run --rm backend bash -c 'PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer --config=app-dev/php-cs-fixer-config.php fix -v'

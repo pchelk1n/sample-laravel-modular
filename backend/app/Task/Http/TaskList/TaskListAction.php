@@ -2,7 +2,6 @@
 
 namespace App\Task\Http\TaskList;
 
-
 use App\Task\Domain\TaskRepository;
 use Illuminate\Http\Resources\Json\JsonResource;
 
