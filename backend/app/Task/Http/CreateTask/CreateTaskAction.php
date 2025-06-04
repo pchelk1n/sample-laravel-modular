@@ -9,9 +9,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 final readonly class CreateTaskAction
 {
-    public function __construct(
-    ) {}
-
     public function __invoke(CreateTaskRequest $createTaskRequest): JsonResource
     {
         $task = Task::create($createTaskRequest->validated());

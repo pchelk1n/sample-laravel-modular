@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Task\Database\Seeders;
 
 use App\Task\Database\Factories\TaskFactory;

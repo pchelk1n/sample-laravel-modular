@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Task\Http\CreateTask;
 
 use Illuminate\Http\Request;

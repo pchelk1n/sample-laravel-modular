@@ -2,10 +2,9 @@ name: Check Code Quality
 
 on:
     push:
-        branches-ignore:
-            - master
+
 jobs:
-  check:
+  composer:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -25,8 +24,42 @@ jobs:
       - name: Composer audit
         run: docker compose run --rm backend composer audit --format=plain
 
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup docker env
+        run: docker/local/setup_envs.bash
+
+      - name: Setup backend env
+        run: cp backend/.env.example backend/.env
+
+      - name: Install packages
+        run: docker compose run --rm backend composer install --no-scripts --prefer-dist
+
       - name: php-cs-fixer check
-        run: docker compose run --rm backend bash -c 'PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer --config=app-dev/php-cs-fixer-config.php fix --dry-run --diff --ansi -v'
+        run: docker compose run --rm backend bash -c 'PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer --config=app-dev/php-cs-fixer-config.php fix --dry-run --show-progress=none'
+
+      - name: rector check
+        run: docker compose run --rm backend vendor/bin/rector process --config=app-dev/rector.config.php --dry-run --no-ansi
+
+      - name: Run tests
+        run: docker compose run --rm backend vendor/bin/phpunit --configuration=app-dev/phpunit.xml
+
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup docker env
+        run: docker/local/setup_envs.bash
+
+      - name: Setup backend env
+        run: cp backend/.env.example backend/.env
+
+      - name: Install packages
+        run: docker compose run --rm backend composer install --no-scripts --prefer-dist
 
       - name: Run tests
         run: docker compose run --rm backend vendor/bin/phpunit --configuration=app-dev/phpunit.xml

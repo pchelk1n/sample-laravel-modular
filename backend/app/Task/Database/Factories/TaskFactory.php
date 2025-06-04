@@ -1,21 +1,26 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Task\Database\Factories;
 
 use App\Task\Domain\Task;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * @extends Factory<Task>
+ */
 final class TaskFactory extends Factory
 {
     protected $model = Task::class;
 
     public function definition(): array
     {
-        $isCompleted = $this->faker->boolean();
-        $completedAt = $isCompleted ? now()->addMinutes($this->faker->randomDigit()) : null;
+        $isCompleted = fake()->boolean();
+        $completedAt = $isCompleted ? now()->addMinutes(fake()->randomDigit()) : null;
 
         return [
-            'title' => $this->faker->realText(),
+            'title' => fake()->realText(),
             'is_completed' => $isCompleted,
             'completed_at' => $completedAt,
         ];

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Task\Tests\Feature;
 
 use App\Task\Database\Factories\TaskFactory;
