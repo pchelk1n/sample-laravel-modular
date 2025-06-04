@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
-         bootstrap="vendor/autoload.php"
+         xsi:noNamespaceSchemaLocation="../vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="../vendor/autoload.php"
+         cacheDirectory="../storage/framework/cache/"
          colors="true"
 >
     <testsuites>
         <testsuite name="Unit">
-            <directory>./app/*/Tests/Unit</directory>
+            <directory>../app/*/Tests/Unit</directory>
         </testsuite>
         <testsuite name="Feature">
-            <directory>./app/*/Tests/Feature</directory>
+            <directory>../app/*/Tests/Feature</directory>
         </testsuite>
     </testsuites>
     <source>
         <include>
-            <directory>app</directory>
+            <directory>../app</directory>
         </include>
     </source>
     <php>

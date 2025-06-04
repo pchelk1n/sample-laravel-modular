@@ -26,7 +26,7 @@ seeds:
 
 test:
 	make setup-env
-	docker compose run --rm backend php artisan test
+	docker compose run --rm backend php artisan test --configuration=app-dev/phpunit.xml
 
 check-code:
 	make php-cs-fixer-check

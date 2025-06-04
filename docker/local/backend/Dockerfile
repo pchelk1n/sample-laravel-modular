@@ -3,9 +3,9 @@ FROM php:8.4.7-fpm
 RUN apt-get update; \
     apt-get install -y --no-install-recommends unzip git;
 
-COPY --from=composer:2.8.8 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.8.9 /usr/bin/composer /usr/bin/composer
 
-COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
+COPY --from=mlocati/php-extension-installer:2.7.34 /usr/bin/install-php-extensions /usr/local/bin/
 RUN install-php-extensions pdo_pgsql intl sysvsem bcmath
 
 RUN ln -sf /usr/share/zoneinfo/UTC /etc/localtime

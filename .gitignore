@@ -1,6 +1,2 @@
 .idea
-/public/storage
-/public/dist/*
-backend/vendor
-backend/bootstrap/cache
 .env

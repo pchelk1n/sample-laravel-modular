@@ -1,0 +1,32 @@
+name: Check Code Quality
+
+on:
+    push:
+        branches-ignore:
+            - master
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup docker env
+        run: docker/local/setup_envs.bash
+
+      - name: Setup backend env
+        run: cp backend/.env.example backend/.env
+
+      - name: Install packages
+        run: docker compose run --rm backend composer install --no-scripts --prefer-dist
+
+      - name: Composer validate
+        run: docker compose run --rm backend composer validate --strict
+
+      - name: Composer audit
+        run: docker compose run --rm backend composer audit --format=plain
+
+      - name: php-cs-fixer check
+        run: docker compose run --rm backend bash -c 'PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer --config=app-dev/php-cs-fixer-config.php fix --dry-run --diff --ansi -v'
+
+      - name: Run tests
+        run: docker compose run --rm backend vendor/bin/phpunit --configuration=app-dev/phpunit.xml
